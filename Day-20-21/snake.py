@@ -15,11 +15,18 @@ class Snake:
 
     def create_snake_body(self):
         for t in COORDINATES:
-            scale = Turtle("square")
-            scale.color("DarkGoldenrod3")
-            scale.penup()
-            scale.goto(t)
-            self.scales.append(scale)
+            self.add_scale(t)
+
+    def add_scale(self, position):
+        scale = Turtle("square")
+        scale.color("DarkGoldenrod3")
+        scale.penup()
+        scale.goto(position)
+        self.scales.append(scale)
+
+    def extend_scale(self):
+        self.add_scale(self.scales[-1].position())
+        # self.add_scale((self.scales[-1].xcor()-20, self.scales[-1].ycor()-20))
 
     def move(self):
         for num in range(len(self.scales) - 1, 0, -1):
@@ -43,4 +50,12 @@ class Snake:
     def go_right(self):
         if self.head.heading() != LEFT:
             self.head.setheading(RIGHT)
+
+    # def get_fat(self):
+    #     more_scales = Turtle("square")
+    #     more_scales.color("DarkGoldenrod")
+    #     more_scales.penup()
+    #     self.scales.append(more_scales)
+
+
 
